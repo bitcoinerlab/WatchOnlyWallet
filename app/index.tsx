@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { ScrollView, Text, TextInput, View, ViewBase } from "react-native";
+import { ScrollView, Text, TextInput, View } from "react-native";
 
 import { networks } from "bitcoinjs-lib";
 const network = networks.bitcoin;
@@ -52,12 +52,6 @@ export default function Home() {
     setDiscovery(null);
   }, [discovery]);
 
-  const onChangeElectrumURI = useCallback(async (electrumURI: string) => {
-    setElectrumURI(electrumURI);
-    try {
-    } catch (err) {}
-  }, []);
-
   const fetch = useCallback(async () => {
     if (discovery) {
       setFetching(true);
@@ -89,7 +83,7 @@ export default function Home() {
         <Text className="mt-1">Enter your Electrum node URI:</Text>
         <TextInput
           value={electrumURI}
-          onChangeText={onChangeElectrumURI}
+          onChangeText={setElectrumURI}
           className="border border-gray-300 p-2 rounded-lg w-full mt-1 bg-white"
           placeholder="e.g., ssl://electrum.example.com:50002"
         />
